@@ -107,7 +107,7 @@ mkdir -p /etc/systemd/system/docker.service.d
 echo -e "[Service] \nEnvironment=\"HTTP_PROXY=socks5://192.168.31.76:9999\"\nEnvironment=\"HTTPS_PROXY=socks5://192.168.31.76:9999\"" >  /etc/systemd/system/docker.service.d/proxy.conf
 systemctl daemon-reload
 systemctl restart docker
-usermod -aG docker $USER # add user that you want to install minikube, minikube could not install with root user 
+usermod -aG docker mehrdad # add user that you want to install minikube, minikube could not install with root user 
 ```
 Check if all things is ok 
 ```bash
@@ -201,6 +201,7 @@ sudo dpkg -i minikube_latest_amd64.deb
 
 If you do not want to use a proxy please do not export commands 
 ```bash
+su - mehrdad #user you want to install minikube, should not be root 
 export HTTP_PROXY=socks5://192.168.31.76:9999
 export HTTPS_PROXY=socks5://192.168.31.76:9999
 minikube start --driver=docker
